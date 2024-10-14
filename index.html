@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Slider d'Images Classique</title>
+    <title>Slider d'Images Direct</title>
 
     <!-- Lien vers Bootstrap CSS -->
     <link rel="stylesheet" href="bootstrap-5.0.2/css/bootstrap.min.css">
@@ -12,14 +12,15 @@
     <link rel="stylesheet" href="css/style.css">
 
     <style>
-        /* Styles pour les divs des images */
+        /* Styles pour le slider d'images */
         .slider-container {
             position: relative;
             width: 100%;
             overflow: hidden;
+            height: 400px; /* Taille des images */
         }
 
-        .slider-image {
+        .slider-item {
             display: none;
             width: 100%;
             position: absolute;
@@ -27,17 +28,17 @@
             left: 0;
         }
 
-        .active-image {
+        .active-slide {
             display: block;
         }
 
         /* Animation pour le slide */
         .slide-left {
-            animation: slideLeft 0.5s forwards;
+            animation: slideLeft 0.3s forwards;
         }
 
         .slide-right {
-            animation: slideRight 0.5s forwards;
+            animation: slideRight 0.3s forwards;
         }
 
         @keyframes slideLeft {
@@ -61,86 +62,85 @@
 </head>
 <body>
 
-    <!-- Slider d'images classique -->
+    <!-- Slider d'images visible dès l'ouverture de la page -->
     <div class="container mt-5">
-        <div id="imageSlider" class="slider-container">
-            <div class="slider-image active-image">
+        <div id="sliderContainer" class="slider-container">
+            <div class="slider-item active-slide">
                 <img src="https://via.placeholder.com/800x400.png?text=Image+1" alt="Image 1" class="w-100">
             </div>
-            <div class="slider-image">
+            <div class="slider-item">
                 <img src="https://via.placeholder.com/800x400.png?text=Image+2" alt="Image 2" class="w-100">
             </div>
-            <div class="slider-image">
+            <div class="slider-item">
                 <img src="https://via.placeholder.com/800x400.png?text=Image+3" alt="Image 3" class="w-100">
             </div>
         </div>
     </div>
 
-    <!-- Lien vers Bootstrap JS et jQuery -->
-    <script src="js/jQuery.js"></script>
+    <!-- Lien vers jQuery et Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="bootstrap-5.0.2/js/bootstrap.bundle.min.js"></script>
 
     <!-- Script jQuery pour gérer le slide -->
     <script>
         $(document).ready(function() {
             let currentIndex = 0;
-            const images = $('#imageSlider .slider-image');
-            const totalImages = images.length;
+            const slides = $('#sliderContainer .slider-item');
+            const totalSlides = slides.length;
+            let isDragging = false;
+            let startPositionX = 0;
+            let endPositionX = 0;
+            const minSwipeDistance = 50;  // Distance minimale pour considérer un swipe valide
 
-            function showImage(index) {
-                images.removeClass('active-image slide-left slide-right').hide();
-
-                if (index < currentIndex) {
-                    images.eq(index).addClass('slide-left').show();
-                } else {
-                    images.eq(index).addClass('slide-right').show();
+            function showSlide(index) {
+                slides.removeClass('active-slide slide-left slide-right').hide();
+                
+                // Si l'index de la nouvelle image est supérieur, elle glisse vers la gauche
+                if (index > currentIndex) {
+                    slides.eq(index).addClass('slide-left').show();
+                }
+                // Si l'index est inférieur, elle glisse vers la droite
+                else if (index < currentIndex) {
+                    slides.eq(index).addClass('slide-right').show();
                 }
 
-                images.eq(index).addClass('active-image');
+                slides.eq(index).addClass('active-slide');
                 currentIndex = index;
             }
 
-            // Swipe pour mobile
-            let touchStartX = 0;
-            let touchEndX = 0;
-
-            $('#imageSlider').on('touchstart', function(event) {
-                touchStartX = event.originalEvent.touches[0].clientX;
+            // Détection du début du swipe
+            $('#sliderContainer').on('mousedown touchstart', function(event) {
+                isDragging = true;
+                startPositionX = event.type === 'touchstart' ? event.originalEvent.touches[0].clientX : event.clientX;
             });
 
-            $('#imageSlider').on('touchmove', function(event) {
-                touchEndX = event.originalEvent.touches[0].clientX;
-            });
+            // Détection de la fin du swipe
+            $('#sliderContainer').on('mouseup touchend', function(event) {
+                if (isDragging) {
+                    endPositionX = event.type === 'touchend' ? event.originalEvent.changedTouches[0].clientX : event.clientX;
 
-            $('#imageSlider').on('touchend', function() {
-                handleSwipe();
-            });
+                    // Calculer la distance de swipe
+                    const swipeDistance = endPositionX - startPositionX;
 
-            // Gestion du swipe pour PC (souris)
-            $('#imageSlider').on('mousedown', function(event) {
-                touchStartX = event.clientX;
-            });
+                    // Si la distance dépasse le seuil, déclenche le changement d'image
+                    if (Math.abs(swipeDistance) > minSwipeDistance) {
+                        if (swipeDistance < 0) {
+                            let nextIndex = (currentIndex + 1) % totalSlides;
+                            showSlide(nextIndex);
+                        } else {
+                            let prevIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+                            showSlide(prevIndex);
+                        }
+                    }
 
-            $('#imageSlider').on('mousemove', function(event) {
-                touchEndX = event.clientX;
-            });
-
-            $('#imageSlider').on('mouseup', function() {
-                handleSwipe();
-            });
-
-            function handleSwipe() {
-                if (touchEndX < touchStartX) {
-                    // Swipe vers la gauche -> image suivante
-                    let nextIndex = (currentIndex + 1) % totalImages;
-                    showImage(nextIndex);
+                    isDragging = false; // Réinitialiser le statut de glissement
                 }
-                if (touchEndX > touchStartX) {
-                    // Swipe vers la droite -> image précédente
-                    let prevIndex = (currentIndex - 1 + totalImages) % totalImages;
-                    showImage(prevIndex);
-                }
-            }
+            });
+
+            // Empêcher le texte d'être sélectionné lors du glissement
+            $(document).on('dragstart', function(event) {
+                event.preventDefault();
+            });
         });
     </script>
 </body>
