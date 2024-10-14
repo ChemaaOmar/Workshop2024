@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slider d'Images Classique</title>
+
+    <!-- Lien vers Bootstrap CSS -->
+    <link rel="stylesheet" href="bootstrap-5.0.2/css/bootstrap.min.css">
+
+    <!-- Lien vers ton fichier CSS -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        /* Styles pour les divs des images */
+        .slider-container {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .slider-image {
+            display: none;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .active-image {
+            display: block;
+        }
+
+        /* Animation pour le slide */
+        .slide-left {
+            animation: slideLeft 0.5s forwards;
+        }
+
+        .slide-right {
+            animation: slideRight 0.5s forwards;
+        }
+
+        @keyframes slideLeft {
+            from {
+                transform: translateX(100%);
+            }
+            to {
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideRight {
+            from {
+                transform: translateX(-100%);
+            }
+            to {
+                transform: translateX(0);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Slider d'images classique -->
+    <div class="container mt-5">
+        <div id="imageSlider" class="slider-container">
+            <div class="slider-image active-image">
+                <img src="https://via.placeholder.com/800x400.png?text=Image+1" alt="Image 1" class="w-100">
+            </div>
+            <div class="slider-image">
+                <img src="https://via.placeholder.com/800x400.png?text=Image+2" alt="Image 2" class="w-100">
+            </div>
+            <div class="slider-image">
+                <img src="https://via.placeholder.com/800x400.png?text=Image+3" alt="Image 3" class="w-100">
+            </div>
+        </div>
+    </div>
+
+    <!-- Lien vers Bootstrap JS et jQuery -->
+    <script src="js/jQuery.js"></script>
+    <script src="bootstrap-5.0.2/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Script jQuery pour gérer le slide -->
+    <script>
+        $(document).ready(function() {
+            let currentIndex = 0;
+            const images = $('#imageSlider .slider-image');
+            const totalImages = images.length;
+
+            function showImage(index) {
+                images.removeClass('active-image slide-left slide-right').hide();
+
+                if (index < currentIndex) {
+                    images.eq(index).addClass('slide-left').show();
+                } else {
+                    images.eq(index).addClass('slide-right').show();
+                }
+
+                images.eq(index).addClass('active-image');
+                currentIndex = index;
+            }
+
+            // Swipe pour mobile
+            let touchStartX = 0;
+            let touchEndX = 0;
+
+            $('#imageSlider').on('touchstart', function(event) {
+                touchStartX = event.originalEvent.touches[0].clientX;
+            });
+
+            $('#imageSlider').on('touchmove', function(event) {
+                touchEndX = event.originalEvent.touches[0].clientX;
+            });
+
+            $('#imageSlider').on('touchend', function() {
+                handleSwipe();
+            });
+
+            // Gestion du swipe pour PC (souris)
+            $('#imageSlider').on('mousedown', function(event) {
+                touchStartX = event.clientX;
+            });
+
+            $('#imageSlider').on('mousemove', function(event) {
+                touchEndX = event.clientX;
+            });
+
+            $('#imageSlider').on('mouseup', function() {
+                handleSwipe();
+            });
+
+            function handleSwipe() {
+                if (touchEndX < touchStartX) {
+                    // Swipe vers la gauche -> image suivante
+                    let nextIndex = (currentIndex + 1) % totalImages;
+                    showImage(nextIndex);
+                }
+                if (touchEndX > touchStartX) {
+                    // Swipe vers la droite -> image précédente
+                    let prevIndex = (currentIndex - 1 + totalImages) % totalImages;
+                    showImage(prevIndex);
+                }
+            }
+        });
+    </script>
+</body>
+</html>
