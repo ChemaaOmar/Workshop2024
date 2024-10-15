@@ -1,5 +1,6 @@
 /* styles.css */
 
+/* Réinitialisation de base */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -7,26 +8,94 @@ body {
     background-color: #f0f0f0;
 }
 
+/* Styles du header et de la navigation */
 header {
-    background: linear-gradient(to right, #ff7e5f, #feb47b);
+    background: linear-gradient(to right, #9F8ACE, #C9819F);
     padding: 10px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative;
+    height: 60px;
 }
 
+/* Style du menu burger (3 barres) */
+.burger-menu {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 25px;
+    margin-right: 20px; /* Espace entre le menu burger et le logo */
+}
+
+.burger-menu .bar {
+    width: 100%;
+    height: 3px;
+    background-color: white;
+    border-radius: 3px;
+}
+
+/* Styles du logo */
 .logo {
     font-size: 24px;
     color: white;
 }
 
-.search-bar {
-    padding: 5px;
-    border-radius: 15px;
-    border: none;
-    width: 200px;
+.logo-img {
+    height: 40px;
+    width: auto;
 }
 
+/* Styles de la barre de recherche */
+.search-bar {
+    padding: 10px;
+    border-radius: 15px;
+    border: none;
+    width: 300px;
+    font-size: 16px;
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* Styles du menu déroulant */
+.menu {
+    display: none;
+    position: absolute;
+    left: 20px;
+    top: 60px;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    border-radius: 8px;
+    z-index: 1000;
+}
+
+.menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.menu ul li {
+    margin: 10px 0;
+}
+
+.menu ul li a {
+    text-decoration: none;
+    color: #333;
+    font-size: 18px;
+}
+
+/* Afficher le menu burger lorsqu'il est ouvert */
+.menu.show {
+    display: block;
+}
+
+/* Contenu principal */
 .main-content {
     text-align: center;
     padding: 20px;
@@ -42,34 +111,9 @@ p {
     color: #555;
 }
 
+/* Icônes de réseaux sociaux */
 .social-icons img {
     width: 50px;
     margin: 10px;
     cursor: pointer;
-}
-
-.nav-buttons {
-    margin: 20px;
-}
-
-#prevBtn, #nextBtn {
-    background-color: #ff7e5f;
-    border: none;
-    color: white;
-    padding: 10px 20px;
-    font-size: 16px;
-    border-radius: 20px;
-    cursor: pointer;
-    margin: 10px;
-}
-
-.video-section img {
-    width: 400px;
-    height: auto;
-    margin: 20px 0;
-}
-
-#prevBtn:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
 }

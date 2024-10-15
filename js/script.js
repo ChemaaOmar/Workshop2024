@@ -28,6 +28,13 @@ $(document).ready(function(){
         checkButtons();
     });
 
+    $(document).ready(function() {
+        $('#burgerMenu').click(function() {
+            $('#menu').toggleClass('show');
+        });
+    });
+    
+
     function checkButtons() {
         if (currentIndex === 0) {
             $('#prevBtn').attr('disabled', true);
