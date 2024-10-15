@@ -1,12 +1,102 @@
+/* Importation de la police Montserrat */
 body {
-    background-color: #f8f9fa;
+    font-family: 'Montserrat', sans-serif;
+    background-color: white;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.carousel-item {
-    height: 400px;
+/* Styles du header */
+header {
+    background: #F5F7FA;
+    padding: 10px 0;
+    border-bottom: 2px solid #E1E3E8;
+    position: relative;
+    background: rgb(132,155,255);
+    background: linear-gradient(90deg, rgba(132,155,255,1) 39%, rgba(254,156,2,1) 100%);
 }
 
-.carousel-item img {
-    max-height: 100%;
-    object-fit: contain;
+.rond {
+    position: absolute;
+    left: -37px;
+    top: 8px;
+    height: 12rem;
+    width: 12rem;
+    background-color: white;
+    border-radius: 50rem;
+}
+
+.rond img {
+    width: 157px;
+    height: auto;
+    position: absolute;
+    right: -32px;
+    top: 2px;
+}
+
+.slider-item img {
+    width: 100%;
+    height: 400px; /* Fixe la hauteur */
+    object-fit: cover; /* L'image couvre tout en gardant une bonne proportion */
+}
+
+/* Styles de la navigation */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 15px 20px 5px;
+}
+
+/* Barre de recherche */
+.search-container {
+    text-align: right;
+}
+
+.search-bar {
+    padding: 10px;
+    border-radius: 30px;
+    border: 1px solid #ccc;
+    width: 250px;
+    font-size: 11px;
+    background-color: #FFF;
+    transition: all 0.3s ease;
+}
+
+.search-bar:focus {
+    border-color: #9F8ACE;
+    outline: none;
+}
+
+/* Menu centré */
+.menu {
+    text-align: center;
+}
+
+.menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 30px;
+    margin-left: 170px;
+}
+
+.menu ul li {
+    display: inline-block;
+}
+
+.menu ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    font-size: 18px;
+    transition: color 0.3s;
+}
+
+.menu ul li a:hover {
+    color: #9F8ACE;
 }

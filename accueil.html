@@ -4,24 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Assainir les réseaux sociaux</title>
+
+    <!-- Lien vers Bootstrap CSS -->
+    <link rel="stylesheet" href="bootstrap-5.0.2/css/bootstrap.min.css">
+
+    <!-- Lien vers Google Fonts pour la police Montserrat -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Lien vers le fichier CSS -->
     <link rel="stylesheet" href="CSS/styles.css">
 </head>
 <body>
     <header>
+        <div class="rond">
+            <img src="img/LOGO.png" alt="">
+        </div>
         <nav class="navbar">
-
-            <!-- Logo -->
-            <div class="logo">
-                <img src="E:\Espi\workshop\FRONT\LOGO.png" alt="Mon Logo" class="logo-img">
-            </div>
 
             <!-- Menu centré -->
             <div class="menu">
                 <ul>
                     <li><a href="#">Accueil</a></li>
-                    <li><a href="#">Guide et Tuto</a></li>
+                    <li><a href="#">Guides et Tutoriels</a></li>
                     <li><a href="#">Forum</a></li>
-                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Ressource</a></li>
                 </ul>
             </div>
 
@@ -33,42 +40,48 @@
         </nav>
     </header>
 
-    <section class="main-content">
-        <h1>Comment assainir les réseaux sociaux</h1>
-        <p>
-            Bien écrire est un art. Commencez par utiliser des expressions simples et accessibles que nous rencontrons tous les jours. Soyez compréhensible et allez à l'essentiel.
-        </p>
-        <p>
-            Faites en sorte que vos arguments s'enchaînent de façon logique et concise sauf si vous écrivez un essai.
-        </p>
-
-        <!-- Section des logos de réseaux sociaux -->
-        <div class="social-logos">
-            <div class="social-item">
-                <img src="E:\Espi\workshop\FRONT\instagram-icon.png" alt="Instagram">
-                <button>Instagram +</button>
+    <!-- Section principale avec le texte à gauche et l'image à droite -->
+    <section class="container">
+        <div class="row">
+            <!-- Texte à gauche -->
+            <div class="col-lg-6">
+                <p>
+                    <span class="highlight">Protégeons nos enfants dans le monde numérique  : </span>
+                    des conseils et des outils pour naviguer en toute sécurité sur les réseaux sociaux
+                </p>
             </div>
-            <div class="social-item">
-                <img src="E:\Espi\workshop\FRONT\snapchat-icon.png" alt="Snapchat">
-                <button>Snapchat +</button>
-            </div>
-            <div class="social-item">
-                <img src="E:\Espi\workshop\FRONT\tiktok-icon.png" alt="TikTok">
-                <button>TikTok +</button>
-            </div>
-            <div class="social-item">
-                <img src="E:\Espi\workshop\FRONT\facebook-icon.png" alt="Facebook">
-                <button>Facebook +</button>
-            </div>
-            <div class="social-item">
-                <img src="E:\Espi\workshop\FRONT\x-icon.jpg" alt="x-icon">
-                <button>X</button>
+            
+            <!-- Image à droite -->
+            <div class="col-lg-6">
+                <img src="img/dangersecur.png" alt="Image illustrative">
             </div>
         </div>
-
     </section>
 
-    <script src="jquery.js"></script>
-    <script src="script.js"></script>
+    <div class="social-logos">
+        <div class="social-item">
+            <img src="img/instagram-icon.png" alt="Instagram">
+        </div>
+        <div class="social-item">
+            <img src="img/snapchat-icon.png" alt="Snapchat">
+        </div>
+        <div class="social-item">
+            <img src="img/tiktok-icon.png" alt="TikTok">
+        </div>
+        <div class="social-item">
+            <img src="img/facebook-icon.png" alt="Facebook">
+        </div>
+        <div class="social-item">
+            <!-- Ajout de la redirection vers index.html pour Twitter -->
+            <a href="index.html">
+                <img src="img/x-icon.jpg" alt="Twitter">
+            </a>
+        </div>
+    </div>
+
+    <script src="js/jquery.js"></script>
+    <script src="js/script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="bootstrap-5.0.2/js/bootstrap.bundle.min.js"></script>  
 </body>
 </html>

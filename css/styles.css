@@ -1,11 +1,9 @@
-/* styles.css */
-
-/* Réinitialisation de base */
-body, html {
-    font-family: Arial, sans-serif;
+/* Importation de la police Montserrat */
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: white;
     margin: 0;
     padding: 0;
-    background-color: #f0f0f0;
     box-sizing: border-box;
 }
 
@@ -14,21 +12,38 @@ header {
     background: #F5F7FA;
     padding: 10px 0;
     border-bottom: 2px solid #E1E3E8;
+    position:relative;
+    background: rgb(132,155,255);
+background: linear-gradient(90deg, rgba(132,155,255,1) 39%, rgba(254,156,2,1) 100%);
+}
+
+.rond{
+    position: absolute;
+    left: -37px;
+    top: 8px;
+    height: 12rem;
+    width: 12rem;
+    background-color: white;
+    border-radius: 50rem;
+
+}
+
+.rond img{
+    width: 157px;
+    height: auto;
+    position: absolute;
+    right: -32px;
+    top: 2px;
 }
 
 /* Styles de la navigation */
 .navbar {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-end;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
-}
-
-.logo-img {
-    height: 60px;
-    width: auto;
+    padding: 15px 20px 5px;
 }
 
 /* Barre de recherche */
@@ -36,12 +51,27 @@ header {
     text-align: right;
 }
 
+.col-lg-6{
+    padding-top: 150px;
+    padding-left: 105px;
+    font-size: 30px;
+    FONT-WEIGHT: BOLD;
+}
+
+.col-lg-6 img {
+    transform: translateY(-20px); /* Remonte l'image de 20px */
+    height: auto;
+    margin-top: -20px; /* Remonte l'image de 20px */
+    width: 90%; /* Augmente la taille de l'image à 120% de sa taille d'origine */
+    max-width: none; /* S'assure que l'image peut dépasser les limites du conteneur si nécessaire */
+    height: auto;
+}
 .search-bar {
     padding: 10px;
     border-radius: 30px;
     border: 1px solid #ccc;
     width: 250px;
-    font-size: 16px;
+    font-size: 11px;
     background-color: #FFF;
     transition: all 0.3s ease;
 }
@@ -49,6 +79,10 @@ header {
 .search-bar:focus {
     border-color: #9F8ACE;
     outline: none;
+}
+
+.highlight {
+    color: #F29C02; /* Couleur orange */
 }
 
 /* Menu centré */
@@ -62,6 +96,7 @@ header {
     padding: 0;
     display: flex;
     gap: 30px;
+    margin-left: 170px;
 }
 
 .menu ul li {
@@ -82,22 +117,42 @@ header {
 
 /* Contenu principal */
 .main-content {
-    text-align: center;
     padding: 50px 20px;
+    display: flex; /* Flexbox pour aligner les éléments sur une ligne */
+    justify-content: center; /* Centrer le texte et l'image horizontalement */
+    align-items: center; /* Aligner les éléments verticalement */
+    text-align: left;
+    gap: 40px; /* Espace entre le texte et l'image */
 }
 
-h1 {
-    color: #333;
-    font-size: 2em;
+/* Conteneur du texte */
+.text-content {
+    max-width: 500px; /* Limite la largeur maximale du texte */
 }
 
-p {
-    margin: 10px auto;
-    max-width: 600px;
-    color: #555;
-    font-size: 1.1em;
+.text-content h1 {
+    font-size: 2.5em; /* Augmente la taille du titre pour plus d'impact */
+    margin-bottom: 20px;
+}
+
+.text-content p {
+    font-size: 1.2em; /* Légère augmentation de la taille du texte */
     line-height: 1.6em;
+    margin-bottom: 20px;
+    color: #333;
 }
+
+/* Conteneur de l'image */
+.image-content {
+    max-width: 40%; /* Limite la taille de l'image pour qu'elle ne dépasse pas 40% de la largeur */
+    text-align: right;
+}
+
+.image-content img {
+    width: 100%; /* L'image occupe 100% du conteneur disponible */
+    height: auto;
+}
+
 
 /* Styles pour la section des logos sociaux */
 .social-logos {
@@ -117,6 +172,16 @@ p {
     width: 100px;
     height: 100px;
     margin-bottom: 10px;
+    cursor: pointer;
+    filter: grayscale(100%); /* Effet noir et blanc par défaut */
+    transition: all 0.3s ease; /* Animation de transition fluide */
+}
+
+/* Effet hover avec surbrillance bleue */
+.social-item img:hover {
+    filter: none; /* Remet l'icône en couleur normale */
+    background-color: #849BFF; /* Arrière-plan bleu lors du survol */
+    border-radius: 50px;
 }
 
 .social-item button {
@@ -157,5 +222,16 @@ p {
     .social-item img {
         width: 80px;
         height: 80px;
+    }
+
+    /* Réalignement du texte et de l'image pour les petits écrans */
+    .main-content {
+        flex-direction: column;
+        text-align: center; /* Recentre le texte */
+    }
+
+    .image-content {
+        text-align: center;
+        margin-top: 20px;
     }
 }
