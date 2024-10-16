@@ -199,6 +199,15 @@ background: linear-gradient(90deg, rgba(132,155,255,1) 39%, rgba(254,156,2,1) 10
     background-color: #0056FF;
 }
 
+.footer {
+    background: rgb(132,155,255);
+    background: linear-gradient(90deg, rgba(132,155,255,1) 39%, rgba(254,156,2,1) 100%);
+    padding: 20px 0;
+    color: white;
+    text-align: center;
+    margin-top: 40px;
+}
+    
 /* Styles responsive pour mobile */
 @media (max-width: 768px) {
     .navbar {
