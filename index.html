@@ -5,25 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>X</title>
 
-    <!-- Lien vers Bootstrap CSS -->
     <link rel="stylesheet" href="bootstrap-5.0.2/css/bootstrap.min.css">
 
-    <!-- Lien vers Google Fonts pour la police Montserrat -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 
-    <!-- Lien vers ton fichier CSS -->
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-    <!-- Ajout du header mis à jour ici -->
     <header>
         <div class="rond">
             <img src="img/LOGO.png" alt="Logo">
         </div>
         <nav class="navbar">
-
-            <!-- Menu centré -->
             <div class="menu">
                 <ul>
                     <li><a href="#">Accueil</a></li>
@@ -34,7 +28,6 @@
                 </ul>
             </div>
 
-            <!-- Barre de recherche -->
             <div class="search-container">
                 <input type="text" placeholder="Rechercher" class="search-bar">
             </div>
@@ -42,7 +35,6 @@
         </nav>
     </header>
 
-    <!-- Ajout d'une section de texte avant le slider -->
     <section class="intro-text">
         <div class="container mt-5">
             <h1 class="text-center">Bienvenue sur notre guide</h1>
@@ -52,45 +44,63 @@
         </div>
     </section>
 
-    <!-- Slider d'images visible dès l'ouverture de la page -->
+    <!-- Ajout d'une section contenant le slider et les conseils (tips) -->
     <div class="container mt-5">
         <div id="sliderContainer" class="slider-container">
             <div class="slider-item active-slide">
                 <img src="img/1etape.jpg" alt="Image 1" class="w-100">
+                <div class="tips-box">
+                    <p>Suivez l'encadré rouge tout le long du tuto</p>
+                </div>
             </div>
             <div class="slider-item">
                 <img src="img/audienceetid.png" alt="Image 2" class="w-100">
+                <div class="tips-box">
+                    <p>Voir l'audiance</p>
+                </div>
             </div>
             <div class="slider-item">
                 <img src="img/audienceetid2.png" alt="Image 3" class="w-100">
+                <div class="tips-box">
+                    <p>Suivez bien chaque étape</p>
+                </div>
             </div>
             <div class="slider-item">
                 <img src="img/vosposte.png" alt="Image 4" class="w-100">
+                <div class="tips-box">
+                    <p>Coché bien tout ce qui est en rouge</p>
+                </div>
             </div>
             <div class="slider-item">
                 <img src="img/vosposte2.png" alt="Image 5" class="w-100">
+                <div class="tips-box">
+                    <p>Allez sur vos posts</p>
+                </div>
             </div>
             <div class="slider-item">
                 <img src="img/Contenue.png" alt="Image 6" class="w-100">
+                <div class="tips-box">
+                    <p>Vous allez masquer les posts</p>
+                </div>
             </div>
             <div class="slider-item">
                 <img src="img/reglage.png" alt="Image 7" class="w-100">
+                <div class="tips-box">
+                    <p>Voir le Contenu</p>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- Footer -->
     <footer class="footer mt-5">
         <div class="container">
             <p class="text-center">© 2024 Tous droits réservés - Votre site</p>
         </div>
     </footer>
 
-    <!-- Lien vers jQuery et Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="bootstrap-5.0.2/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Script jQuery pour gérer le slide -->
     <script>
         $(document).ready(function() {
             let currentIndex = 0;
@@ -124,7 +134,7 @@
                     endPositionX = event.type === 'touchend' ? event.originalEvent.changedTouches[0].clientX : event.clientX;
                     const swipeDistance = endPositionX - startPositionX;
 
-                    // Simplifier le swipe et réduire le seuil pour une meilleure réactivité
+                    
                     if (Math.abs(swipeDistance) > minSwipeDistance) {
                         if (swipeDistance < 0) {
                             let nextIndex = (currentIndex + 1) % totalSlides;
@@ -137,8 +147,7 @@
                     isDragging = false;
                 }
             });
-
-            // Empêcher la sélection de texte pendant le swipe
+          
             $(document).on('dragstart', function(event) {
                 event.preventDefault();
             });

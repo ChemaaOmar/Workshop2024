@@ -161,6 +161,7 @@ background: linear-gradient(90deg, rgba(132,155,255,1) 39%, rgba(254,156,2,1) 10
     justify-content: center;
     gap: 30px;
     padding: 50px 20px;
+    font-size: 100px;
 }
 
 .social-item {
@@ -178,11 +179,16 @@ background: linear-gradient(90deg, rgba(132,155,255,1) 39%, rgba(254,156,2,1) 10
 }
 
 /* Effet hover avec surbrillance bleue */
-.social-item img:hover {
-    filter: none; /* Remet l'icône en couleur normale */
-    background-color: #849BFF; /* Arrière-plan bleu lors du survol */
-    border-radius: 50px;
+/* Effet hover pour changer la couleur des icônes en bleu */
+.social-item i {
+    color: #333; /* Couleur par défaut de l'icône */
+    transition: color 0.3s ease; /* Animation pour un changement de couleur fluide */
 }
+
+.social-item i:hover {
+    color: #849BFF; /* Change la couleur en bleu lors du survol */
+}
+
 
 .social-item button {
     background-color: #0033CC;
@@ -198,6 +204,31 @@ background: linear-gradient(90deg, rgba(132,155,255,1) 39%, rgba(254,156,2,1) 10
 .social-item button:hover {
     background-color: #0056FF;
 }
+
+/* Styles pour le bouton "Guides et Tutoriels" */
+.btn-guide {
+    margin-right: 877px;
+    display: inline-block;
+    padding: 15px 30px;
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    background: linear-gradient(90deg, rgba(132,155,255,1) 39%, rgba(254,156,2,1) 100%);
+    border-radius: 50px;
+    text-decoration: none;
+    transition: background 0.3s ease, transform 0.3s ease;
+    border: none;
+    margin-top: -20px;
+}
+
+/* Effet au survol (hover) */
+.btn-guide:hover {
+    background: linear-gradient(90deg, rgba(254,156,2,1) 39%, rgba(132,155,255,1) 100%);
+    transform: translateY(-3px);
+    text-decoration: none;
+    color: white;
+}
+
 
 .footer {
     background: rgb(132,155,255);

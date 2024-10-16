@@ -75,9 +75,24 @@ header {
 
 .slider-item img {
     width: 100%;
-    height: auto;
-    object-fit: contain; /* Garde les proportions de l'image */
-    max-height: 500px; /* Ajuste la hauteur maximale des images */
+    height: 590PX;
+    object-fit: contain;
+    max-height: 800px;
+}
+
+/* TIPS BOX STYLES */
+.tips-box {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background-color: rgba(132,155,255,1); /* Fond semi-transparent */
+    color: #fff;
+    padding: 10px;
+    border-radius: 8px;
+    max-width: 300px;
+    font-size: 14px;
+    font-weight: bold;
+    z-index: 2;
 }
 
 /* Styles de la navigation */
