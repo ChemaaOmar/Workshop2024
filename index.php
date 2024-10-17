@@ -6,9 +6,7 @@
     <title>X</title>
 
     <link rel="stylesheet" href="bootstrap-5.0.2/css/bootstrap.min.css">
-
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -44,19 +42,40 @@
         </div>
     </section>
 
-    <!-- Ajout d'une section contenant le slider et les conseils (tips) -->
+    <!-- Section contenant le slider et les conseils (tips) -->
     <div class="container mt-5">
         <div id="sliderContainer" class="slider-container">
-            <div class="slider-item active-slide">
-                <img src="img/1etape.jpg" alt="Image 1" class="w-100">
-                <div class="tips-box">
-                    <p>Suivez l'encadré rouge tout le long du tuto</p>
-                </div>
-            </div>
+
+            <?php
+            // Inclusion du fichier de configuration pour la connexion à la base de données
+            include 'php/config.php';
+
+            // Récupérer les deux premiers tips de la base de données
+            try {
+                $stmt = $pdo->query("SELECT * FROM tips WHERE isactive = 1 LIMIT 2");
+                $tips = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                if ($tips) {
+                    foreach ($tips as $index => $tip) {
+                        echo '<div class="slider-item ' . ($index === 0 ? 'active-slide' : '') . '">';
+                        echo '<img src="img/1etape.jpg" alt="Image 1" class="w-100">'; // Change l'image si besoin
+                        echo '<div class="tips-box">';
+                        echo '<p>' . htmlspecialchars($tip['content']) . '</p>';
+                        echo '</div>';
+                        echo '</div>';
+                    }
+                } else {
+                    echo '<p>Aucun tip trouvé dans la base de données.</p>';
+                }
+            } catch (PDOException $e) {
+                echo 'Erreur : ' . $e->getMessage();
+            }
+            ?>
+
             <div class="slider-item">
                 <img src="img/audienceetid.png" alt="Image 2" class="w-100">
                 <div class="tips-box">
-                    <p>Voir l'audiance</p>
+                    <p>Voir l'audience</p>
                 </div>
             </div>
             <div class="slider-item">
@@ -68,7 +87,7 @@
             <div class="slider-item">
                 <img src="img/vosposte.png" alt="Image 4" class="w-100">
                 <div class="tips-box">
-                    <p>Coché bien tout ce qui est en rouge</p>
+                    <p>Cochez bien tout ce qui est en rouge</p>
                 </div>
             </div>
             <div class="slider-item">
@@ -86,7 +105,7 @@
             <div class="slider-item">
                 <img src="img/reglage.png" alt="Image 7" class="w-100">
                 <div class="tips-box">
-                    <p>Voir le Contenu</p>
+                    <p>Voir le contenu</p>
                 </div>
             </div>
         </div>
@@ -109,7 +128,7 @@
             let isDragging = false;
             let startPositionX = 0;
             let endPositionX = 0;
-            const minSwipeDistance = 30;  // Distance minimale pour rendre le swipe plus sensible
+            const minSwipeDistance = 30;
 
             // Initialiser avec le premier slide visible
             slides.hide();
@@ -134,7 +153,6 @@
                     endPositionX = event.type === 'touchend' ? event.originalEvent.changedTouches[0].clientX : event.clientX;
                     const swipeDistance = endPositionX - startPositionX;
 
-                    
                     if (Math.abs(swipeDistance) > minSwipeDistance) {
                         if (swipeDistance < 0) {
                             let nextIndex = (currentIndex + 1) % totalSlides;
@@ -147,7 +165,7 @@
                     isDragging = false;
                 }
             });
-          
+
             $(document).on('dragstart', function(event) {
                 event.preventDefault();
             });
